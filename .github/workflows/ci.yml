@@ -10,6 +10,13 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  security:
+    name: Security
+    uses: ./.github/workflows/security.yml
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
   python:
     name: Python tests
     runs-on: ubuntu-latest
@@ -39,7 +46,7 @@ jobs:
             ./coverage.xml
   containers:
     name: Container (${{ matrix.context }})
-    needs: [python]
+    needs: [python, security]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -87,7 +94,7 @@ jobs:
   ci:
     name: CI
     if: always()
-    needs: [python, containers]
+    needs: [python, containers, security]
     runs-on: ubuntu-latest
     steps:
       - name: Require every check to pass

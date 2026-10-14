@@ -30,3 +30,7 @@ Pull requests run lint, formatting, pytest with coverage, and container build/sm
 Build locally: `docker build -t api-consumer-demo .`, then `docker run --rm -p 8000:8000 api-consumer-demo`.
 
 Public visibility does not grant an open-source license; owner selection is pending.
+
+## Coding and security
+
+Project skills are in `.agents/skills/`; repository guidance is in [AGENTS.md](AGENTS.md). Follow the [OWASP control baseline](docs/security.md) and [GitHub environment-secret guide](docs/secrets.md). Required CI includes Gitleaks, Bandit, dependency audits, and CodeQL analysis before image publication.
