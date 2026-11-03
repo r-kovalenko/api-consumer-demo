@@ -34,6 +34,8 @@ jobs:
           cache: pip
           cache-dependency-path: ./requirements-dev.txt
       - run: python -m pip install -r requirements-dev.txt
+      - name: Build Python wheel in an isolated build environment
+        run: python -m pip wheel --no-deps --wheel-dir "$RUNNER_TEMP/wheels" .
       - run: ruff check .
       - run: ruff format --check .
       - run: pytest --cov=app --cov-report=term-missing --cov-report=xml --junitxml=test-results/results.xml
