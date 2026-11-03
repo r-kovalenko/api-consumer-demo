@@ -6,20 +6,49 @@
       "directory": "/",
       "schedule": {
         "interval": "weekly"
+      },
+      "groups": {
+        "codeql": {
+          "patterns": [
+            "github/codeql-action/*"
+          ]
+        }
       }
     },
     {
       "package-ecosystem": "pip",
       "directory": "/",
       "schedule": {
-        "interval": "weekly"
+        "interval": "daily"
+      },
+      "groups": {
+        "python-minor-patch": {
+          "patterns": [
+            "*"
+          ],
+          "update-types": [
+            "minor",
+            "patch"
+          ]
+        }
       }
     },
     {
       "package-ecosystem": "pip",
       "directory": "/security",
       "schedule": {
-        "interval": "weekly"
+        "interval": "daily"
+      },
+      "groups": {
+        "python-minor-patch": {
+          "patterns": [
+            "*"
+          ],
+          "update-types": [
+            "minor",
+            "patch"
+          ]
+        }
       }
     }
   ]
